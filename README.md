@@ -1,4 +1,1 @@
-- Defining props for a component
-  - interface [componentName]Props
-- Optional props
-- Default props
+> I want code with typescript, never give up
