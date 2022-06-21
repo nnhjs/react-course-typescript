@@ -1,36 +1,46 @@
-import { useState } from "react"
+import { useState } from "react";
 
-interface Address {
-  street: string,
-  number: number,
-  zip: string
-}
+const defaultFormData = {
+  title: "",
+  body: "",
+};
 
-interface User {
-  name: string,
-  age: number,
-  country: string,
-  address: Address,
-  admin: boolean
-}
 export default function App() {
-  const [user, setUser] = useState<User | null>(null)
+  const [formData, setFormData] = useState(defaultFormData);
+  const { title, body } = formData;
 
-  const fetchUser = () => setUser({
-    name: 'Mark',
-    age: 23,
-    country: 'Viet Name',
-    address: {
-      street: 'main st',
-      number: 88,
-      zip: '12345'
-    },
-    admin: false
-  })
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(formData);
+
+    setFormData(defaultFormData);
+  };
+
   return (
     <>
-    <button onClick={fetchUser} >Fetch user</button>
-    <p>{user && <p>{user.name}</p>}</p>
+      <h1>Form</h1>
+      <p>Create a post</p>
+
+      <form onSubmit={onSubmit}>
+        <label htmlFor="title">Title</label>
+        <br />
+        <input type="text" id="title" value={title} onChange={onChange} />
+        <br />
+        <br />
+        <label htmlFor="body">Body</label>
+        <br />
+        <input type="text" id="body" value={body} onChange={onChange} />
+        <br />
+        <br />
+        <button type="submit">Upload post</button>
+      </form>
     </>
-  )
+  );
 }
