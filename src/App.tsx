@@ -1,30 +1,19 @@
-import DataGrid from "./components/DataGrid";
-
-export interface User {
-  id: number,
-  name: string,
-  age: number,
-}
+import Component, { Item } from "./components/Component";
 
 export default function App() {
-  const users = [
-    { id: 1, name: "John", age: 55 },
-    { id: 2, name: "Mitchel", age: 23 },
-    { id: 3, name: "Mike", age: 50 },
+  const items: Item[] = [
+    {
+      id: 1,
+      title: "A nice sunset",
+      imageUrl:
+        "https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80",
+    },
+    {
+      id: 2,
+      quote:
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, quam ea. Nisi nulla earum itaque, sapiente exercitationem, laudantium sunt fuga dolores repellendus, expedita dicta. Voluptates minima laboriosam odit reprehenderit magnam!",
+    },
   ];
 
-  const orders = [
-    {id: 1, quantity: 5, amount: 75},
-    {id: 2, quantity: 1, amount: 75},
-    {id: 3, quantity: 1, amount: 75},
-  ]
-
-  return (
-    <>
-      <DataGrid items={users} />
-      <hr />
-
-      <DataGrid items={orders} />
-    </>
-  );
+  return <Component items={items} />;
 }
